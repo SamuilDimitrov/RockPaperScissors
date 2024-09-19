@@ -3,6 +3,9 @@
 
 #include "Move.hpp"
 
+#define MIN_CHOICE 0
+#define MAX_CHOICE 2
+
 class Player
 {
 public:
