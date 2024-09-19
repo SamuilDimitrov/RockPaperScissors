@@ -1,7 +1,15 @@
 #include <iostream>
-#include <unordered_map>
+#include <algorithm>
+#include <cctype>
+#include <string>
 
 #include "GameController.hpp"
+
+const std::unordered_map<Move, Move> GameController::winMap = {
+    {Move::Rock, Move::Scissors},
+    {Move::Scissors, Move::Paper},
+    {Move::Paper, Move::Rock}
+};
 
 GameController::GameController()
 {
@@ -18,10 +26,23 @@ void GameController::clearScreen() const {
 }
 
 bool GameController::askPlayAgain(){
-    std::string playAgain;
+    std::string input;
     std::cout << "Do you want to play again? (yes/no): ";
-    std::cin >> playAgain;
-    return playAgain == "yes";
+
+    while (true)
+    {
+        std::getline(std::cin, input);
+        
+        if (!input.empty())break;
+
+        input.clear();
+        clearScreen();
+        std::cout << "No input detected. Do you want to play again? (yes/no):";
+    }
+
+    std::transform(input.begin(), input.end(), 
+        input.begin(), [](unsigned char c){ return std::tolower(c); });
+    return (input == "yes");
 }
 
 void GameController::playGame()
@@ -42,9 +63,9 @@ void GameController::displayEndScreen(){
 }
 
 void GameController::displayRoundResults(Move computerMove, Move playerMove, RoundOutcome result){
-    std::cout << "Thanks for playing! The end result is:\n";
-    std::cout << "Human wins: " << player.getNumberOfWins() << "\n";
-    std::cout << "Computer wins: " << computer.getNumberOfWins() << "\n";
+    std::cout << "Computer chose: " << moveToString(computerMove) << "\n";
+    std::cout << "You chose: " << moveToString(playerMove) << "\n";
+    std::cout << OutcomeToString(result) << "\n";
 }
 
 void GameController::playRound()

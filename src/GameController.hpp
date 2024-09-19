@@ -1,6 +1,8 @@
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
 
+#include <unordered_map>
+
 #include "Player.hpp"
 
 class GameController
@@ -19,6 +21,7 @@ private:
     };
     Player player;
     Player computer;
+    static const std::unordered_map<Move, Move> winMap;
 
     void clearScreen() const;
     bool askPlayAgain();
