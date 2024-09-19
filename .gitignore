@@ -1,12 +1,51 @@
+# Compiled object files
+*.o
+*.lo
+*.la
+*.al
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# CMake-generated files
 CMakeLists.txt.user
 CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
+CMakeFiles/
 cmake_install.cmake
-install_manifest.txt
+Makefile
 compile_commands.json
 CTestTestfile.cmake
+Testing/
+*.dir/
+CMakeScripts
+install_manifest.txt
 _deps
 CMakeUserPresets.json
+/build/
+
+# GoogleTest build artifacts
+googletest/build/
+googletest/googletest/build/
+
+# Unit test logs
+test_detail.xml
+test_results.xml
+
+# VSCode settings (optional)
+.vscode/
