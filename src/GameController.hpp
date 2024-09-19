@@ -8,7 +8,6 @@ class GameController
 public:
     GameController();
 
-    // Method to start the game
     void playGame();
 
 private:
@@ -21,12 +20,13 @@ private:
     Player player;
     Player computer;
 
-    // Handle one round of the game
+    void clearScreen() const;
+    bool askPlayAgain();
     void playRound();
-    // Helper function to convert enums to string
+    void displayEndScreen();
+    void displayRoundResults(Move computerMove, Move playerMove, RoundOutcome result);
     std::string moveToString(Move move) const;
     std::string OutcomeToString(RoundOutcome move) const;
-    // Method to determine the winner based on moves
     RoundOutcome determineWinner(Move playerMove, Move computerMove) const;
 };
 
