@@ -6,14 +6,14 @@ This project is a simple implementation of the Rock-Paper-Scissors game in C++. 
 
 ## Prerequisites
 - CMake (version 3.30 or later)
-- A C++20 compiler (preferable MSVC)
+- C++20 with target compiler: MSVC
 
 ## Build Instructions
 
 ### On Unix-Based Systems
    ```bash
-   `chmod +x build.sh`
-    ./build.sh
+   chmod +x build.sh
+   ./build.sh
    ```
 
 ### On Windows
@@ -29,13 +29,13 @@ ctest -C Release --output-on-failure --verbose
 ```
 
 ## Executing the Program
-
-#### On Unix-Based Systems
+### To run the program, from the build directory:
+### On Unix-Based Systems
 ```bash
-./src/Release/RockPaperScissors.out
+./build/src/Release/RockPaperScissors.out
 ```
 
-#### On Windows
+### On Windows
 ```batch
 .\build\src\Release\RockPaperScissors.exe
 ```
