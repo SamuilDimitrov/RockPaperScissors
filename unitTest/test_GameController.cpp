@@ -59,9 +59,15 @@ TEST_F(GameControllerTest, endScreenDispaly)
     test_input.str("0\nno\n");
     game.playGame();
 
-    std::string end_screen_tie =  "Thanks for playing! The end result is:\nPlayer wins: 0\nComputer wins: 0\n";
-    std::string end_screen_player =  "Thanks for playing! The end result is:\nPlayer wins: 1\nComputer wins: 0\n";
-    std::string end_screen_computer =  "Thanks for playing! The end result is:\nPlayer wins: 0\nComputer wins: 1\n";
+    std::string end_screen_tie = "Thanks for playing! The end result is:\n"
+                                "Player wins: 0\n"
+                                "Computer wins: 0\n";
+    std::string end_screen_player =  "Thanks for playing! The end result is:\n"
+    "Player wins: 1\n"
+    "Computer wins: 0\n";
+    std::string end_screen_computer =  "Thanks for playing! The end result is:\n"
+                                "Player wins: 0\n"
+                                "Computer wins: 1\n";
 
     EXPECT_TRUE(
         captured_output.str().find(end_screen_tie) != std::string::npos ||
@@ -75,9 +81,15 @@ TEST_F(GameControllerTest, roundDispaly)
     test_input.str("0\nno\n");
     game.playGame();
 
-    std::string round_screen_tie =  "Computer chose: Rock\nYou chose: Rock\nThe result of the round is: Tie\n";
-    std::string round_screen_player =  "Computer chose: Scissors\nYou chose: Rock\nThe result of the round is: You win!\n";
-    std::string round_screen_computer =  "Computer chose: Paper\nYou chose: Rock\nThe result of the round is: Computer wins!\n";
+    std::string round_screen_tie =  "Computer chose: Rock\n"
+                                    "You chose: Rock\n"
+                                    "The result of the round is: Tie\n";
+    std::string round_screen_player =  "Computer chose: Scissors\n"
+                                    "You chose: Rock\n"
+                                    "The result of the round is: You win!\n";
+    std::string round_screen_computer =  "Computer chose: Paper\n"
+                                    "You chose: Rock\n"
+                                    "The result of the round is: Computer wins!\n";
 
     EXPECT_TRUE(
         captured_output.str().find(round_screen_tie) != std::string::npos ||
@@ -133,9 +145,15 @@ TEST_F(GameControllerTest, ScoreBoardTest)
     test_input.str("0\nno\n");
     game.playGame();
 
-    std::string end_screen_tie =  "Thanks for playing! The end result is:\nPlayer wins: 0\nComputer wins: 0\n";
-    std::string end_screen_player =  "Thanks for playing! The end result is:\nPlayer wins: 1\nComputer wins: 0\n";
-    std::string end_screen_computer =  "Thanks for playing! The end result is:\nPlayer wins: 0\nComputer wins: 1\n";
+    std::string end_screen_tie =  "Thanks for playing! The end result is:\n"
+                                    "Player wins: 0\n"
+                                    "Computer wins: 0\n";
+    std::string end_screen_player =  "Thanks for playing! The end result is:\n"
+                                    "Player wins: 1\n"
+                                    "Computer wins: 0\n";
+    std::string end_screen_computer =  "Thanks for playing! The end result is:\n"
+                                    "Player wins: 0\n"
+                                    "Computer wins: 1\n";
 
     EXPECT_TRUE(
         (captured_output.str().find("Tie") != std::string::npos && captured_output.str().find(end_screen_tie) != std::string::npos) ||
