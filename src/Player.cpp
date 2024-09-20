@@ -7,37 +7,13 @@
 Player::Player(){}
 Player::Player(PlayerType human_player)
 {
-    this->prlayer_wins = 0;
+    this->player_wins = 0;
     this->is_player_human = human_player;
 }
 
 bool Player::isHuman() const{
     return is_player_human == PlayerType::Human;
 }
-
-// Move Player::getHumanMove() const {
-//     int player_choice;
-    
-//     std::cout << "Enter your move (0 = Rock, 1 = Paper, 2 = Scissors): ";
-//     while (true) { 
-//         std::cin >> player_choice;
-         
-//         if (std::cin.fail()) {
-            
-//             std::cout << "Invalid input. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors):" << std::endl;
-//             std::cin.clear(); 
-//             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-//             continue;
-//         }
-
-//         if (player_choice < MIN_CHOICE || player_choice > MAX_CHOICE){
-//             std::cout << "Invalid choice. Please enter (0 = Rock, 1 = Paper, 2 = Scissors):" << std::endl;
-//             continue;
-//         }
-        
-//         return static_cast<Move>(player_choice);
-//     }
-// }
 
 Move Player::getHumanMove() const {
     int player_choice;
@@ -49,7 +25,7 @@ Move Player::getHumanMove() const {
         std::getline(std::cin, input);
 
         if (input.empty()) {
-            std::cout << "No input detected. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors):";
+            std::cout << "No input detected. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors): ";
             continue;
         }
 
@@ -83,13 +59,13 @@ Move Player::getComputerMove() const {
 }
 
 bool Player::addWin(){
-    if (prlayer_wins == MAX_WINS) {
+    if (player_wins == MAX_WINS) {
         return false;  
     }
-    prlayer_wins++;
+    player_wins++;
     return true;
 }
 
 int Player::getNumberOfWins() const {
-    return this->prlayer_wins;
+    return this->player_wins;
 }
