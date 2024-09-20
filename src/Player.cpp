@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <sstream>
 
 #include "Player.hpp"
 
@@ -29,17 +30,19 @@ Move Player::getHumanMove() const {
             continue;
         }
 
-        try {
-            player_choice = std::stoi(input);
-            if (player_choice >= MIN_CHOICE && player_choice <= MAX_CHOICE) break;
-            throw std::out_of_range("Number out of range");
-        } catch (const std::invalid_argument& e) {
+        std::istringstream input_stream(input);
+
+        if(!(input_stream >> player_choice)) {
             std::cout << "Invalid input. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors): ";
-        } catch (const std::out_of_range& e) {
+            continue;
+        } 
+        
+        if (player_choice < MIN_CHOICE || player_choice > MAX_CHOICE) {
             std::cout << "Invalid choice. Please enter (0 = Rock, 1 = Paper, 2 = Scissors): ";
+            continue;
         }
+        return static_cast<Move>(player_choice);
     }
-    return static_cast<Move>(player_choice);
 }
 
 

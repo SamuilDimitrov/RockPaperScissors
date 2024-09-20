@@ -128,8 +128,5 @@ GameController::RoundOutcome GameController::determineWinner(Move playerMove, Mo
     {
         return RoundOutcome::PlayerWins;
     }
-    else
-    {
-        return RoundOutcome::ComputerWins;
-    }
+    return RoundOutcome::ComputerWins;
 }
