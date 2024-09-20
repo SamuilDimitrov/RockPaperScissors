@@ -58,14 +58,14 @@ void GameController::playGame()
 
 void GameController::displayEndScreen(){
     std::cout << "Thanks for playing! The end result is:\n";
-    std::cout << "Human wins: " << player.getNumberOfWins() << "\n";
+    std::cout << "Player wins: " << player.getNumberOfWins() << "\n";
     std::cout << "Computer wins: " << computer.getNumberOfWins() << "\n";
 }
 
 void GameController::displayRoundResults(Move computerMove, Move playerMove, RoundOutcome result){
     std::cout << "Computer chose: " << moveToString(computerMove) << "\n";
     std::cout << "You chose: " << moveToString(playerMove) << "\n";
-    std::cout << OutcomeToString(result) << "\n";
+    std::cout << "The result of the round is: " << OutcomeToString(result) << "\n";
 }
 
 void GameController::playRound()

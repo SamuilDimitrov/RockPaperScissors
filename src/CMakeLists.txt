@@ -12,7 +12,7 @@ set(Sources
     GameController.cpp
 )
 
-option(ENABLE_TESTING "Enable unit tests" OFF)
+option(ENABLE_TESTING "Enable unit tests" ON)
 if(ENABLE_TESTING)
 add_library(RockPaperScissorsLib STATIC ${Sources}) 
 endif()

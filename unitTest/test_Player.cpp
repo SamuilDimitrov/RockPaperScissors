@@ -91,18 +91,18 @@ TEST_F(PlayerTest, IsComputerMoveRandom)
 
 TEST_F(PlayerTest, HumanMovePromptIsPrinted)
 {
-    std::stringstream captured_output;
-    std::streambuf *cout_buffer = std::cout.rdbuf();
-    std::cout.rdbuf(captured_output.rdbuf());
-
     std::istringstream test_input("0");
     std::streambuf* cin_buffer = std::cin.rdbuf();
     std::cin.rdbuf(test_input.rdbuf());
 
+    std::stringstream captured_output;
+    std::streambuf *cout_buffer = std::cout.rdbuf();
+    std::cout.rdbuf(captured_output.rdbuf());
+
     human_player.getMove();
 
-    std::cout.rdbuf(cout_buffer);
     std::cin.rdbuf(cin_buffer);
+    std::cout.rdbuf(cout_buffer);
 
     std::string expected_output = "Enter your move (0 = Rock, 1 = Paper, 2 = Scissors): ";
     EXPECT_EQ(captured_output.str(), expected_output);

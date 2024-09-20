@@ -14,7 +14,7 @@ add_subdirectory(src)
 # target_include_directories(RockPaperScissors PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
 # Option to enable or disable testing
-option(ENABLE_TESTING "Enable unit tests" OFF)
+option(ENABLE_TESTING "Enable unit tests" ON)
 
 if(ENABLE_TESTING)
     # Enable testing feature

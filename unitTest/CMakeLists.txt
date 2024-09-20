@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.30)  # or the version you need
 
 set(Sources
-    test.cpp
+    test_Player.cpp
+    test_GameController.cpp
 )
 
 add_executable(test_runner ${Sources})
