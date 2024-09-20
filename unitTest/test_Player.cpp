@@ -11,10 +11,25 @@ protected:
     Player human_player;
     Player computer_player;
 
+    std::istringstream test_input;
+    std::stringstream captured_output;
+    std::streambuf* cin_buffer;
+    std::streambuf* cout_buffer;
+
     void SetUp() override
     {
         human_player = Player(Player::PlayerType::Human);
         computer_player = Player(Player::PlayerType::Computer);
+
+        cin_buffer = std::cin.rdbuf();
+        cout_buffer = std::cout.rdbuf();
+        std::cin.rdbuf(test_input.rdbuf());
+        std::cout.rdbuf(captured_output.rdbuf());
+    }
+
+    void TearDown() override {
+        std::cin.rdbuf(cin_buffer);
+        std::cout.rdbuf(cout_buffer);
     }
 
     std::map<Move, int> countsMoves(int n)
@@ -91,72 +106,38 @@ TEST_F(PlayerTest, IsComputerMoveRandom)
 
 TEST_F(PlayerTest, HumanMovePromptIsPrinted)
 {
-    std::istringstream test_input("0");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(test_input.rdbuf());
-
-    std::stringstream captured_output;
-    std::streambuf *cout_buffer = std::cout.rdbuf();
-    std::cout.rdbuf(captured_output.rdbuf());
-
+    test_input.str("0");
     human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
-    std::cout.rdbuf(cout_buffer);
 
     std::string expected_output = "Enter your move (0 = Rock, 1 = Paper, 2 = Scissors): ";
     EXPECT_EQ(captured_output.str(), expected_output);
 }
 
 TEST_F(PlayerTest, RockInput) {
-    std::istringstream test_input("0");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(test_input.rdbuf());
+    test_input.str("0");
 
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
 
     EXPECT_EQ(move, Move::Rock);
 }
 
 TEST_F(PlayerTest, PaperInput) {
-    std::istringstream test_input("1");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(test_input.rdbuf());
-
+    test_input.str("1");
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
 
     EXPECT_EQ(move, Move::Paper);
 }
 
 TEST_F(PlayerTest, ScissorsInput) {
-    std::istringstream test_input("2");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(test_input.rdbuf());
-
+    test_input.str("2");
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
 
     EXPECT_EQ(move, Move::Scissors);
 }
 
 TEST_F(PlayerTest, EmptyInput) {
-    std::istringstream empty_input("\n 1\n");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(empty_input.rdbuf());
-
-    std::stringstream captured_output;
-    std::streambuf *cout_buffer = std::cout.rdbuf();
-    std::cout.rdbuf(captured_output.rdbuf());
-
+    test_input.str("\n1\n");
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
-    std::cout.rdbuf(cout_buffer);
 
     std::string expected_output = "No input detected. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors): ";
 
@@ -165,18 +146,8 @@ TEST_F(PlayerTest, EmptyInput) {
 }
 
 TEST_F(PlayerTest, InvalidChoiceInput) {
-    std::istringstream empty_input("3\n 1\n");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(empty_input.rdbuf());
-
-    std::stringstream captured_output;
-    std::streambuf *cout_buffer = std::cout.rdbuf();
-    std::cout.rdbuf(captured_output.rdbuf());
-
+    test_input.str("3\n 1\n");
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
-    std::cout.rdbuf(cout_buffer);
 
     std::string expected_output =  "Invalid choice. Please enter (0 = Rock, 1 = Paper, 2 = Scissors): ";
 
@@ -185,18 +156,8 @@ TEST_F(PlayerTest, InvalidChoiceInput) {
 }
 
 TEST_F(PlayerTest, InvalidArgumentInput) {
-    std::istringstream empty_input("this is not a number\n 1\n");
-    std::streambuf* cin_buffer = std::cin.rdbuf();
-    std::cin.rdbuf(empty_input.rdbuf());
-
-    std::stringstream captured_output;
-    std::streambuf *cout_buffer = std::cout.rdbuf();
-    std::cout.rdbuf(captured_output.rdbuf());
-
+    test_input.str("this is not a number\n 1\n");
     Move move = human_player.getMove();
-
-    std::cin.rdbuf(cin_buffer);
-    std::cout.rdbuf(cout_buffer);
 
     std::string expected_output =  "Invalid input. Please enter a number (0 = Rock, 1 = Paper, 2 = Scissors): ";
 
