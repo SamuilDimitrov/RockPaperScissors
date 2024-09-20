@@ -1,8 +1,41 @@
 # RockPaperScissors
-48-hours C++ Assigment from Lake3D
+48-hour C++ Assignment from Lake3D
 
+## Overview
+This project is a simple implementation of the Rock-Paper-Scissors game in C++. It allows players to compete against the computer in a classic game format.
 
-# To compile from build directory
-rm -rf * & cmake -G "Visual Studio 17 2022" .. -T host=x64 -A x64 & cmake --build . --config Release
-# To test
-ctest -C Release --output-on-failure
+## Prerequisites
+- CMake (version 3.30 or later)
+- A C++20 compiler (preferable MSVC)
+
+## Build Instructions
+
+### On Unix-Based Systems
+   ```bash
+   `chmod +x build.sh`
+    ./build.sh
+   ```
+
+### On Windows
+   ```batch
+   .\build.bat
+   ```
+
+## Testing the Project
+To run the tests, navigate to the build directory and use CTest:
+```bash
+cd build
+ctest -C Release --output-on-failure --verbose
+```
+
+## Executing the Program
+
+#### On Unix-Based Systems
+```bash
+./src/Release/RockPaperScissors.out
+```
+
+#### On Windows
+```batch
+.\build\src\Release\RockPaperScissors.exe
+```
